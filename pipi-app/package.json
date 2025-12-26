@@ -13,6 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@airjp73/dice-notation": "^2.2.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
