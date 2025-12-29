@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
   tokenize,
   rollDice,
@@ -8,6 +7,7 @@ import {
 import type { IRollResult } from './models';
 import { LOCAL_STORAGE_ROLL_HISTORY } from './constants/constants';
 import { useLocalStorage } from './hooks/hooks';
+import { STYLE_BUTTON_2ND } from './styles/styles';
 
 
 const MAX_HISTORY = 10;
@@ -53,16 +53,57 @@ function Dices(){
 
     return <>
         <div className="card">
-            <button onClick={() => handleRoll('2d6 + 100')}>
-                result is {rollHistory.at(0)?.total}
+            <button className={STYLE_BUTTON_2ND} onClick={() => handleRoll('3d6 + 7')}>
+                3d6 + 7
             </button>
-            <ul>
-                {rollHistory.map((roll, index) => (
-                <li key={roll.id}>
-                    <strong>#{index+1}</strong>: {roll.total} 
-                </li>
-                ))}
-            </ul>
+            <button className={STYLE_BUTTON_2ND} onClick={() => handleRoll('5d12')}>
+                5d12
+            </button>
+            <button className={STYLE_BUTTON_2ND} onClick={() => handleRoll('4d6')}>
+                4d6
+            </button>
+            <button className={STYLE_BUTTON_2ND} onClick={() => handleRoll('10d4+20')}>
+                10d4+20
+            </button>
+
+            <p className="my-4"> Result is {rollHistory.at(0)?.total}  </p>
+
+            <div className="my-4 relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+                <table className="w-full text-sm text-left rtl:text-right text-body">
+                    <thead className="text-sm text-body bg-neutral-secondary-soft border-b rounded-base border-default">
+                        <tr>
+                            <th scope="col" className="px-6 py-3 font-medium">
+                                #
+                            </th>
+                            <th scope="col" className="px-6 py-3 font-medium">
+                                Result
+                            </th>
+                            <th scope="col" className="px-6 py-3 font-medium">
+                                Expression
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {rollHistory.map((roll, index) => (
+                            <>
+                                <tr className="bg-neutral-primary border-b border-default">
+                                    <th scope="row" className="px-6 py-4 font-medium text-heading whitespace-nowrap">
+                                        #{index+1}
+                                    </th>
+                                    <td className="px-6 py-4">
+                                        <strong>{roll.total}</strong> 
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {roll.expression}
+                                    </td>
+                                </tr>
+                            </>
+                            ))}
+                            
+                       
+                    </tbody>
+                </table>
+            </div>
             <button onClick={() => setRollHistory([])}>
                 Clear History
             </button>
