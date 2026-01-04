@@ -91,7 +91,7 @@ function Dices(){
             <button className={STYLE_BUTTON_2ND} onClick={() => handleRoll('10d4+20')}>
                 10d4+20
             </button> */}
-
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-flow-row-dense gap-4">
             {
                 rolls.map((roll) => (
                     <>
@@ -101,6 +101,7 @@ function Dices(){
                     </>
                 ))
             }
+            </div>
 
             <p className="my-4"> Result is {rollHistory.at(0)?.total}  </p>
 
