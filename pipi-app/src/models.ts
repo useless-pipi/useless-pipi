@@ -5,3 +5,9 @@ export interface IRollResult {
     rolls: any;
     timestamp: string;
 };
+
+export interface IRoll {
+    id: number;
+    name: string;
+    expression: string;
+}

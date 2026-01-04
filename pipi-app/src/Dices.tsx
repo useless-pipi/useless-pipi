@@ -4,18 +4,44 @@ import {
   tallyRolls,
   calculateFinalResult,
 } from '@airjp73/dice-notation';
-import type { IRollResult } from './models';
-import { LOCAL_STORAGE_ROLL_HISTORY } from './constants/constants';
+import type { IRoll, IRollResult } from './models';
+import { LOCAL_STORAGE_ROLL_HISTORY, LOCAL_STORAGE_ROLLS } from './constants/constants';
 import { useLocalStorage } from './hooks/hooks';
 import { STYLE_BUTTON_2ND } from './styles/styles';
+import { useEffect } from 'react';
 
 
 const MAX_HISTORY = 10;
+const initRolls: IRoll[] = [
+    {
+        id: 0,
+        name: 'Claw',
+        expression: '3d6+7',
+    },
+    {
+        id: 1,
+        name: 'Crackling Wave',
+        expression: '5d12',
+    },
+    {
+        id: 2,
+        name: 'Witch Strike',
+        expression: '4d6',
+    },
+    {
+        id: 3,
+        name: 'Sake',
+        expression: '10d4+20',
+    },
+]
 
 function Dices(){
 
     // const [rollHistory, setRollHistory] = useState(() : IRollResult[] => []);
     const [rollHistory, setRollHistory] = useLocalStorage<IRollResult[]>(LOCAL_STORAGE_ROLL_HISTORY, [])
+    const [rolls, setRolls] = useLocalStorage<IRoll[]>(LOCAL_STORAGE_ROLLS, [])
+
+    useEffect(() => setRolls(initRolls))
 
     const handleRoll = (diceExpr: string) => {
         try {
@@ -53,8 +79,8 @@ function Dices(){
 
     return <>
         <div className="card">
-            <button className={STYLE_BUTTON_2ND} onClick={() => handleRoll('3d6 + 7')}>
-                3d6 + 7
+            {/* <button className={STYLE_BUTTON_2ND} onClick={() => handleRoll('3d6+7')}>
+                3d6+7
             </button>
             <button className={STYLE_BUTTON_2ND} onClick={() => handleRoll('5d12')}>
                 5d12
@@ -64,7 +90,17 @@ function Dices(){
             </button>
             <button className={STYLE_BUTTON_2ND} onClick={() => handleRoll('10d4+20')}>
                 10d4+20
-            </button>
+            </button> */}
+
+            {
+                rolls.map((roll) => (
+                    <>
+                        <button className={STYLE_BUTTON_2ND} onClick={() => handleRoll(roll.expression)}>
+                            <strong>{roll.name}</strong> ({roll.expression})
+                        </button>
+                    </>
+                ))
+            }
 
             <p className="my-4"> Result is {rollHistory.at(0)?.total}  </p>
 
