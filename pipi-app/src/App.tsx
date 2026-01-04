@@ -9,9 +9,6 @@ function App() {
 
   return (
     <>
-      <button onClick={handleReload} style={{ padding: '10px 20px', cursor: 'pointer' }}>
-        Reload Page
-      </button>
       {/* <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -21,9 +18,12 @@ function App() {
         </a>
       </div> */}
       <h1 className="text-3xl font-bold underline text-blue-600">
-        DM Prep
+        DM Prep v0.0.1
       </h1>
       <Dices />
+      <button onClick={handleReload} style={{ padding: '10px 20px', cursor: 'pointer' }}>
+        Reload Page
+      </button>
     </>
   )
 }
