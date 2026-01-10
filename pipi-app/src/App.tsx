@@ -18,7 +18,7 @@ function App() {
         </a>
       </div> */}
       <h1 className="text-3xl font-bold underline text-blue-600">
-        DM Prep v0.0.1
+        DM Prep v0.0.2
       </h1>
       <Dices />
       <button onClick={handleReload} style={{ padding: '10px 20px', cursor: 'pointer' }}>

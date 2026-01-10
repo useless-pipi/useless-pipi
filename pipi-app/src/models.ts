@@ -4,6 +4,7 @@ export interface IRollResult {
     total: any;
     rolls: any;
     timestamp: string;
+    name: string | undefined;
 };
 
 export interface IRoll {
