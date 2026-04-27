@@ -1,10 +1,13 @@
+export type TDiceRolls = (number[] | null)[] | 'ERROR';
+
 export interface IRollResult {
     id: number;
     expression: string;
-    total: any;
-    rolls: any;
+    total: number | 'ERROR';
+    rolls: TDiceRolls;
     timestamp: string;
     name: string | undefined;
+    breakdown?: string;
 };
 
 export interface IRoll {
