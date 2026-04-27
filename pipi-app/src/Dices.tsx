@@ -39,7 +39,7 @@ const initRolls2: IRoll[] = [
     {
         id: 4,
         name: 'Dire Worg Bite (Poison + Poisoned)',
-        expression: '2d8+6',
+        expression: '2d6',
     },
     {
         id: 5,
